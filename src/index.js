@@ -28,6 +28,22 @@ app.get('/users', function (req, res) {
 });
 
 
+app.delete('/user/:id',function(req, res){
+    const user = listaUser.find(us => us.id == req.params.id);
+    if(user){
+        res.status(202).json({
+            message: "Si existe el usuario",
+            user
+        });
+        listaUser.pop();
+    }else{
+        res.status(204).json({
+            message: "No existe el usuario"
+        });
+    }
+});
+
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
   });
